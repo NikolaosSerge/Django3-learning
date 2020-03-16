@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ blog.title }}</title>
+  </head>
+  <body>
+    <h2>{{ blog.title }}</h2>
+    <h3> <i> {{ blog.date|date:'d M Y'|upper }} </i> </h3>
+    <p> {{ blog.description|safe }}</p>
+  </body>
+  <br>
+  <a href="{{ Blog.URL }}">Link</a>
+</html>

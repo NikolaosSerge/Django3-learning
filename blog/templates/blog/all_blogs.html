@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>blog</title>
+  </head>
+  <body>
+    This Home of the blogs.
+    <a href="{% url 'home' %}">home</a>
+
+
+    {% for blog in blogs %}
+
+      <a href="{% url 'blog:detail' blog.id %}"> <h2>{{ blog.title }}</h2> </a>
+      <i> {{ blog.date|date:'d M Y'|upper }} </i>
+      <p> {{ blog.description|striptags|truncatechars:100  }}</p>
+
+      {% if blog.url %}
+        <br>
+        <a href="{{ blog.url }}">Link</a>
+      {% endif %}
+
+    {% endfor %}
+    <h6> <i> Showing {{ blogs.count }} of {{ blog_count.count }} blog{{ blogs.count|pluralize }}. </i> </h6>
+
+  </body>
+</html>
