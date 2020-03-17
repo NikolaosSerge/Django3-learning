@@ -1,18 +1,25 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>HomePage</title>
-  </head>
-  <body>
-    <h1>  This is The Home!!! </h1>
-    <h5> <a href="admin/">Site Administration!</a> </h5>
+{% extends 'portofolio/base.html' %}
+{% block title %}N.S_Portofolio{% endblock %}
+{% block content %}
+    <h1> Better everyday! </h1>
+    <p>
+      A simple motto to live by! After all, progress is made one step at a time.
+      Simplify break down revise, take another step and learn at every oppurtunity
+      you get, your pain today will be your strength tomorow. Do your best and all the
+      good you can! In the end we are what we repeatedly do. Go to bed with dreams
+      and wake up with purpose. Take your chances, oppurtunities do not happen,
+      you create them, one thing at a time... Be aware of yourself attitudes are
+      contagious; make yours worth catching. Have courage and be kind. Greatness
+      is measured by courage and heart. Everything covetable lies on the other
+      side of fear. Be better everyday and tend to that ideal of perfection...
+    </p>
+
     <a href="{% url 'blog:all_blogs' %}">Blogs</a>
     <br>
     {% load static %}
     <img src="{% static 'portofolio/mypic.jpg' %}">
     <br>
-    <a href="{% static 'portofolio/Nikolaos_Sergevidis_cv.pdf' %}">Resume</a>
+
     {% for project in projects %}
 
       <h2>{{ project.title }}</h2>
@@ -24,5 +31,4 @@
       {% endif %}
 
     {% endfor %}
-  </body>
-</html>
+{% endblock %}
