@@ -1,0 +1,35 @@
+{% extends 'portofolio/base.html' %}
+{% block title %}Interactive Dictionary{% endblock %}
+{% block content %}
+
+
+    <div class="class=container text-center">
+
+      <h1>Home of Interactive Dictionary</h1>
+      <br>
+      <h2>Welcome! Here you can learn the defenitions <br>
+          of 49537 English words and phrases.<br>
+          Just enter the word or phrase bellow</h2>
+          <br>
+      <form class="Dictionary_Input" action="{% url 'interactive_dictionary:interDic' %}" method="get">
+        <input type="text" name="usr_input" placeholder="Enter your query here">
+        <br>
+        {% for i in matches %}
+          <input class="alert alert-success" type="radio" name="usr_input" value="{{ i }} ">{{ i }}
+        {% endfor %}
+        <br>
+        <button type="submit" name="button">Submit</button>
+        <br>
+
+      <ol>
+        <h4> <b>List of the defenitions.</b> </h4>
+        {% for i in result %}
+          <li>  {{ i }} </li>
+        {% endfor %}
+      </ol>
+      <br>
+
+
+    </div>
+
+    {% endblock %}

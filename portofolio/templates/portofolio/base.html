@@ -9,9 +9,11 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- personal CSS -->
-    <link rel="stylesheet" type="text/css" href="{% static 'portofolio/style.css' %}">
+     <link rel="stylesheet" type="text/css" href="{% static 'portofolio/styles.css' %}">
 
     <link rel="icon" type="image/png" href="{% static "portofolio/images/logo.png" %}">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
@@ -30,7 +32,7 @@
           <li class="nav-item inacttive">
             <a class="nav-link" href="{% url 'blog:all_blogs' %}">Blogs</a>
           </li>
-
+          
         </ul>
       </div>
     </nav>

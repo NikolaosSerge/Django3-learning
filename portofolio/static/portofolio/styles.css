@@ -1,0 +1,41 @@
+
+body {
+    background: lightblue url("images/background.jpg") no-repeat;
+}
+section h4 {
+  color: black;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+
+
+body #intro_p {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 500;
+  margin: 300px;
+  color: aquamarine;
+}
+#prof{
+  margin-right: 20px;
+ float: right;
+}
+
+#des_p{
+  clear: left;
+  margin: 200px;
+}
+
+#album{
+  clear: both;
+}
+
+#album-h2{
+  text-align: center;
+  margin-block-end: 2em;
+
+}
+
+
+#blog_title_link{
+  color: black;
+}

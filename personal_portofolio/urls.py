@@ -24,6 +24,7 @@ urlpatterns = [
     path('detail/',views.detail,name='detail'),
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
+    path('interactive_dictionary/',include('interactive_dictionary.urls')),
 
 ]
 

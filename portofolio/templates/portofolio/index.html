@@ -1,9 +1,10 @@
 {% extends 'portofolio/base.html' %}
 {% block title %}N.S_Portofolio{% endblock %}
 {% block content %}
-    <h1 class="text-center"> Better everyday! </h1>
+    <h1 id="intro_p" class="text-center"> <b> Better everyday! </b> </h1>
     <center>
-      <p class="text-left" style="width: 40rem;">
+      <p id = "intro_p" class="text-left" >
+        <b>
         A simple motto to live by! After all, progress is made one step at a time.
         Simplify break down revise, take another step and learn at every oppurtunity
         you get, your pain today will be your strength tomorow. Do your best and all the
@@ -13,22 +14,35 @@
         contagious; make yours worth catching. Have courage and be kind. Greatness
         is measured by courage and heart. Everything covetable lies on the other
         side of fear. Be better everyday and tend to that ideal of perfection...
+        </b>
       </p>
-
+    </center>
     <br>
     {% load static %}
-    <img class="img" src="{% static 'portofolio/images/front.jpg' %}" width="40%" height="40%">
+    <img id='prof' class="img" src="{% static 'portofolio/images/front.jpg' %}" width="40%" height="40%">
+    <p id='des_p'>
+       A simple motto to live by! After all, progress is made one step at a time.
+    Simplify break down revise, take another step and learn at every oppurtunity
+    you get, your pain today will be your strength tomorow. Do your best and all the
+    good you can! In the end we are what we repeatedly do. Go to bed with dreams
+    and wake up with purpose. Take your chances, look alive, oppurtunities do not happen,
+    you create them, a one thing at a time... Be aware of yourself attitudes are
+    contagious; make yours worth catching. Have courage and be kind. Greatness
+    is measured by courage and heart. Everything covetable lies on the other
+    side of fear. Be better everyday and tend to that ideal of perfection...
+  </p>
+
     <br>
 
-    <div class="album py-5 bg-light">
+    <div id='album' class="album py-5 bg-light">
         <div class="container">
-
+          <h2 id='album-h2'> Projects repository. </h2>
           <div class="row">
             {% for project in projects %}
 
             <div class="col-md-4">
               <div class="card mb-4 shadow-sm">
-                <a class="navbar-brand" href="{% url 'home' %}">
+                <a class="navbar-brand" href="{{ project.url }}">
                 <section>
                   <h4>{{ project.title }}</h4>
                 </section>
@@ -47,5 +61,5 @@
 
         </div>
     </div>
-    </center>
+
 {% endblock %}

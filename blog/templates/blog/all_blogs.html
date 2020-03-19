@@ -2,11 +2,11 @@
 {% block title %}Blogs{% endblock %}
 {% block content %}
 
-    <a href="{% url 'home' %}">home</a>
+  {% load static %}
 
     {% for blog in blogs %}
 
-      <a href="{% url 'blog:detail' blog.id %}"> <h2>{{ blog.title }}</h2> </a>
+      <a id="blog_title_link" class="nav-link" href="{% url 'blog:detail' blog.id %}"> <h2>{{ blog.title }}</h2> </a>
       <i> {{ blog.date|date:'d M Y'|upper }} </i>
       <p> {{ blog.description|striptags|truncatechars:100  }}</p>
 
