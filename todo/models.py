@@ -1,3 +1,18 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-# Create your models here.
+
+class Todo(models.Model):
+    """docstring for project."""
+
+    title = models.CharField(max_length=100)
+    memo = models.TextField(blank=True,max_length=250)
+    #image=models.ImageField(upload_to='portofolio/images')
+    #url = models.URLField(blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    completed = models.DateTimeField(null=True)
+    #completion = models.BooleanField(default=False,name='Completion Status')
+    importance = models.BooleanField(default=False,name='Important')
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    def __str__(self):
+        return self.title
