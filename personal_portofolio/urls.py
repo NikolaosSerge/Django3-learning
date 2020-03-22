@@ -19,12 +19,18 @@ from django.conf.urls.static import static
 from django.conf import settings
 from portofolio import views
 
+admin.site.site_header = "Portfolio Admin"
+admin.site.site_title = "Administration Portal"
+admin.site.index_title = "Welcome my League!"
+
+
 urlpatterns = [
     path('', views.HomePage, name = "home"),
     path('detail/',views.detail,name='detail'),
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
     path('interactive_dictionary/',include('interactive_dictionary.urls')),
+    path('todo/',include('todo.urls')),
 
 ]
 
