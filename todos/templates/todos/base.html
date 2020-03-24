@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     {% load static %}
-     <link rel="stylesheet" type="text/css" href="{% static 'todo/styles.css' %}">
-    <title>TodoWooo</title>
+     <link rel="stylesheet" type="text/css" href="{% static 'todos/styles.css' %}">
+    <title>todosWooo</title>
   </head>
   <body>
 
@@ -12,16 +12,16 @@
     {% if user.is_authenticated %}
     logged in as {{ user.username }}
 
-    <form class="" action="{% url 'todo:logoutuser' %}" method="POST">
+    <form class="" action="{% url 'todos:logoutuser' %}" method="POST">
       {% csrf_token %}
       <button type="submit" name="userlogin">Logout.</button>
     </form>
 
     {% else %}
 
-    <a href="{% url 'todo:home' %}">Home</a>
-    <a href="{% url 'todo:usersignup' %}">sign up</a>
-    <a href="{% url 'todo:userlogin' %}">login</a>
+    <a href="{% url 'todos:home' %}">Home</a>
+    <a href="{% url 'todos:usersignup' %}">sign up</a>
+    <a href="{% url 'todos:userlogin' %}">login</a>
     <a href="{% url 'home' %}">Portfolio</a>
 
 

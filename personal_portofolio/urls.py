@@ -30,7 +30,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
     path('interactive_dictionary/',include('interactive_dictionary.urls')),
-    path('todo/',include('todo.urls')),
+    path('todos/',include('todos.urls')),
 
 ]
 

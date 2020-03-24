@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'portofolio',
     'blog',
     'interactive_dictionary',
-    'todo',
+    'todos',
 ]
 
 MIDDLEWARE = [
