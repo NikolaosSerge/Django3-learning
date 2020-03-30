@@ -1,13 +1,24 @@
 
  {% extends 'todos/base.html' %}
  {% block content %}
+<div class="block">
+ {{ error_msg }}
+  <h2>Just DO IT!!!</h2>
+  <form class="Forms" action="{% url 'todos:createtodo' %}" method="POST">
 
-   <h2>Just DO IT!!!</h2>
-   {{ error_msg }}
-   <form class="" action="{% url 'todos:createtodo' %}" method="POST">
-     {% csrf_token %}
-     {{ form.as_p}}
-     <button type="submit" name="createtodo">TodoWOOO!</button>
-   </form>
+    {% csrf_token %}
+     
+
+        <input class ='titin' placeholder="Title" type="text" name="title" maxlength="100" required="" id="id_title"></p>
+
+          <textarea class="textar" placeholder="To Remember" name="memo" cols="40" rows="10" maxlength="5000" id="id_memo"></textarea></p>
+          <label class="labcontainer">Important
+            <input type="checkbox" name="Important" id="id_Important">
+            <span class="checkmark"></span>
+          </label>
+            <button type="submit" class="btn btn-success buttons" name="createtodo">TodoWOOO!</button>
+ </form>
+
+
 
  {% endblock %}

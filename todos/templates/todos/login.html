@@ -1,13 +1,17 @@
 
  {% extends 'todos/base.html' %}
  {% block content %}
+ <div class="block">
+
 
    <h2>Log in</h2>
    {{ error_msg }}
-   <form class="" action="{% url 'todos:userlogin' %}" method="POST">
+   <form class="Forms" action="{% url 'todos:userlogin' %}" method="POST">
      {% csrf_token %}
      {{ form.as_p}}
-     <button type="submit" name="userlogin">Log in.</button>
+
+     <button type="submit" class="btn btn-success">WOOO!</button>
    </form>
 
+ </div>
  {% endblock %}

@@ -8,7 +8,7 @@ from .models import Todo
 from .forms import TodoForm
 from django.urls import reverse
 from django.utils import timezone
-
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     return render(request,'todos/home.html')
@@ -33,33 +33,24 @@ def userlogin(request):
             return redirect('todos:createtodo')
 
 
-
 def usersignup(request):
-    if request.method == 'GET':
-        usr_input = request.GET.get('usr_input')
-        return render(request,"todos/index.html",{'form':UserCreationForm()})
-    else:
-        # TODO: Create a new user
-        usr_name = request.POST.get('username',False)
-        password1 = request.POST.get('password1',False)
-        password2 = request.POST.get('password2',False)
-
-        if password1 == password2:
-            try:
-                user = User.objects.create_user(usr_name,password = password1)
-                user.save()
-                login(request,user)
-                return HttpResponseRedirect("todos:createtodo")
-            except IntegrityError:
-                error_msg = "This username is already taken!"
-                return render(request,"todos/index.html",{'form':UserCreationForm(),'error_msg':error_msg})
-        else:
-            # TODO: password matching
-            error_msg = "The passwords do not match!"
-            return render(request,"todos/index.html",{'form':UserCreationForm(),'error_msg':error_msg})
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect('todos:home')
+        return render(request, 'todos/index.html', {'form': form})
+    return render(request, 'todos/index.html')
 
 
 
+
+
+@login_required
 def createtodo(request):
 
     if request.method == 'GET':
@@ -76,19 +67,21 @@ def createtodo(request):
             return render(request,"todos/useraccount.html",{'form':TodoForm(),'error_msg':error_msg})
 
 
-
+@login_required
 def curtodo(request):
-    todos = Todo.objects.filter(user = request.user, completed__isnull=True)
-    ctodos = Todo.objects.filter(user = request.user, completed__isnull=False)
+    todos = Todo.objects.filter(user = request.user, completed__isnull=True).order_by('-created')
+    ctodos = Todo.objects.filter(user = request.user, completed__isnull=False).order_by('-completed')
     return render(request,"todos/curtodo.html",{'todos':todos,'ctodos':ctodos})
 
 #def completed(request):
     #ctodos = Todo.objects.filter(user = request.user, completed__isnull=False)
     #return render(request,"todos/curtodo.html",{'ctodos':todos})
 
-
+@login_required
 def viewtodo(request, todos_pk):
     viewTD = get_object_or_404(Todo,pk=todos_pk, user = request.user)
+    #if  viewTD.completion is True:
+        #return render(request,'todos/comdetail.html')
     if request.method == "GET":
         form = TodoForm(instance=viewTD)
         return render(request,'todos/detail.html',{'viewTD':viewTD,'form':form})
@@ -96,26 +89,28 @@ def viewtodo(request, todos_pk):
         try:
             form = TodoForm(request.POST, instance=viewTD)
             form.save()
-            return HttpResponseRedirect(reverse('todos:viewtodo', args=(viewTD.id,)))#reverse('todos:viewtodo', args=(viewTD.id,)) If we want to make a reverse match by id and stay on the same page
+            return HttpResponseRedirect(reverse('todos:curtodo'))#reverse('todos:viewtodo', args=(viewTD.id,)) If we want to make a reverse match by id and stay on the same page
         except ValueError:
             error_msg = "something went wrong!"
             return render(request,'todos/detail.html',{'viewTD':viewTD,'form':form,'error_msg':error_msg})
-
+            
+@login_required
 def complete(request, todos_pk):
     viewTD = get_object_or_404(Todo,pk=todos_pk, user = request.user)
     if request.method == "POST":
         viewTD.completed = timezone.now()
+        viewTD.completion = True
         viewTD.save()
         return HttpResponseRedirect(reverse('todos:curtodo'))
 
-
+@login_required
 def deltodo(request, todos_pk):
     viewTD = get_object_or_404(Todo,pk=todos_pk, user = request.user)
     if request.method == "POST":
         viewTD.delete()
         return HttpResponseRedirect(reverse('todos:curtodo'))
 
-
+@login_required
 def logoutuser(request):
     if request.method == "POST":
         logout(request)

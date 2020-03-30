@@ -1,0 +1,21 @@
+
+{% extends 'todos/base.html' %}
+{% block content %}
+
+<ul>
+  <li>{{ viewTD.title }}</li>
+  <li>{{ viewTD.memo }}</li>
+  <li>{{ viewTD.created }}</li>
+  <li>{{ viewTD.Important }}</li>
+  <li>{{ viewTD.user }}</li>
+</ul>
+
+
+
+<form id="todos_title_link" action="{% url 'todos:deltodo' viewTD.id %}" method = "post">
+  {% csrf_token %}
+  <button type="submit" name="delete">delete</button>
+</form>
+
+
+{% endblock %}

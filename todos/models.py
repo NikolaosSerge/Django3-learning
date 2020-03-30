@@ -12,7 +12,7 @@ class Todo(models.Model):
     #url = models.URLField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
     completed = models.DateTimeField(null=True,blank=True)
-    #completion = models.BooleanField(default=False,name='Completion Status')
+    completion = models.BooleanField(default=False)
     importance = models.BooleanField(default=False,name='Important')
     user = models.ForeignKey(User, on_delete = models.CASCADE)
     def __str__(self):

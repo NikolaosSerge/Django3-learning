@@ -17,12 +17,26 @@ body #intro_p {
 }
 #prof{
   margin-right: 20px;
- float: right;
+  float: right;
+
+}
+#prof {
+    margin-right: 48px;
+    margin-top: 137px;
+    float: right;
 }
 
-#des_p{
-  clear: left;
-  margin: 200px;
+#des_p {
+    border-radius: 25px;
+    clear: left;
+    margin-left: 293px;
+    padding-right: 225px;
+    margin-right: 647px;
+    margin-bottom: 158px;
+    margin-top: 145px;
+    background-color: lightcyan;
+    background-image: linear-gradient(to right, lightcyan , lightblue);
+    padding: 20px;
 }
 
 #album{

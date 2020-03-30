@@ -1,2 +1,10 @@
-<h1>You Have logged out sucessfully {{ user.username }}</h1>
-<a href="{% url 'todos:home' %}">Home</a>
+
+
+
+
+{% extends 'todos/base.html' %}
+{% block content %}
+
+   <h1>You Have logged out sucessfully {{ user.username }}</h1>
+
+{% endblock %}

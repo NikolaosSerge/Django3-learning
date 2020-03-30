@@ -1,13 +1,47 @@
 
  {% extends 'todos/base.html' %}
  {% block content %}
+<div class="block">
 
-   <h2>Sign UP!</h2>
-   {{ error_msg }}
-   <form class="" action="{% url 'todos:usersignup' %}" method="POST">
-     {% csrf_token %}
-     {{ form.as_p}}
-     <button type="submit" name="usersignup">Sign up</button>
-   </form>
+  <h2>Sign up Form</h2>
 
+
+  <form method="post" action="{% url 'todos:usersignup' %}" class="Forms">
+
+    {% csrf_token %}
+
+    {% for field in form %}
+      {% for error in field.errors %}
+        <p style="color: red">{{ error }}</p>
+      {% endfor %}
+    {% endfor %}
+
+     <p>
+
+       <input type="text" placeholder="Username" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username">
+       <br>
+       <small style="color: grey">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small>
+
+     <p>
+
+       <input placeholder="Password" type="password" name="password1" autocomplete="new-password" required="" id="id_password1">
+
+         <li><small style="color: grey">Your password can’t be too similar to your other personal information.</small></li>
+           <li><small style="color: grey">Your password must contain at least 8 characters.</small></li>
+           <li><small style="color: grey">Your password can’t be a commonly used password.</small></li>
+           <li><small style="color: grey">Your password can’t be entirely numeric.</small></li>
+
+     <p>
+
+       <input placeholder="Password confirmation" type="password" name="password2" autocomplete="new-password" required="" id="id_password2">
+       <br>
+       <small style="color: grey">Enter the same password as before, for verification.</small>
+     </p>
+
+
+   <button  type="submit" class="btn btn-success buttons">Sign up</button>
+  </form>
+
+
+</div>
  {% endblock %}
