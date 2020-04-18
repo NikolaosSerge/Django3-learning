@@ -1,0 +1,79 @@
+
+{% extends 'todos/base.html' %}
+ {% block content %}
+{% load static %}
+
+
+
+
+<section class="todos">
+
+{% for todo in todos %}
+
+  {% if todo.Important %}
+
+
+    <article  class="important" id = "{{ todo.id }}" onmouseout="out1('{{ todo.id }}')" onmouseover="in1('{{ todo.id }}')"  onclick="location.href='{% url 'todos:viewtodo' todo.id %}';" style="cursor: pointer;">
+        {% if todo.Important %} <b> {% endif %}
+        <a id="todos_title_link"  href="{% url 'todos:viewtodo' todo.id %}"> <h5 class='titles'> {{ todo.title }} </h5>
+          {% if todo.Important %} </b> {% endif %}
+        </a>
+        <h6>Started at {{ todo.created|date:'M j Y H:i' }}</h6>
+          {% if todo.memo %}
+            <span id = "{{ todo.id }}">{{ todo.memo|striptags|truncatechars:30 }}</span>
+            <span class="more" id = '{{ todo.id }}'>{{ todo.memo|striptags|truncatechars:300 }}</span>
+          {% endif %}
+    </article>
+
+
+  {% else %}
+  <article class = 'normal' onmouseout="out1('{{ todo.id }}')" onmouseover="in1('{{ todo.id }}')"  id = "{{ todo.id }}" onclick="location.href='{% url 'todos:viewtodo' todo.id %}';" style="cursor: pointer;">
+
+
+
+          {% if todo.Important %} <b> {% endif %}
+          <a id="todos_title_link"  href="{% url 'todos:viewtodo' todo.id %}"> <h5 class='titles'> {{ todo.title }} </h5>
+            {% if todo.Important %} </b> {% endif %}
+          </a>
+          <h6>Started at {{ todo.created|date:'M j Y H:i' }}</h6>
+            {% if todo.memo %}
+            <span id = "{{ todo.id }}">{{ todo.memo|striptags|truncatechars:30 }}</span>
+            <span class="more" id = "{{ todo.id }}">{{ todo.memo|striptags|truncatechars:300 }}</span>
+            {% endif %}
+
+
+      </article>
+    </a>
+    {% endif %}
+{% endfor %}
+</section>
+
+
+
+<br>
+
+
+<section class="ctodos">
+{% for todo in ctodos %}
+    <article id = '{{ todo.id }}'  onmouseout="out1('{{ todo.id }}')" onmouseover="in1('{{ todo.id }}')" onclick="location.href='{% url 'todos:viewtodo' todo.id %}';" style="cursor: pointer;">
+
+        <a id="todos_title_link"  href="{% url 'todos:viewtodo' todo.id %}">
+          {% if todo.Important %} <b> {% endif %}
+           <h5>{{ todo.title }}</h5>
+          {% if todo.Important %} </b> {% endif %}
+        </a>
+        <h6>Completed at {{ todo.completed|date:'M j Y H:i' }}</h6>
+
+        {% if todo.memo %}
+          <span class="less" id = "{{ todo.id }}">{{ todo.memo|striptags|truncatechars:30 }}</span>
+          <span class="more" id = '{{ todo.id }}'>{{ todo.memo|striptags|truncatechars:300 }}</span>
+        {% endif %}
+
+
+    </article>
+{% endfor %}
+</section>
+
+
+
+ {% endblock %}

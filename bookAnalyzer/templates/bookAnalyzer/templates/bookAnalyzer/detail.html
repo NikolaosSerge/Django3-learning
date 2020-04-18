@@ -1,0 +1,59 @@
+
+{% extends 'todos/base.html' %}
+{% block content %}
+
+
+  <p class="Memo">{{ viewTD.memo }}</p>
+
+
+<div class="block blockright">
+  {% if error_msg %}
+  <small style="color: red; margin-left: 10px;">You have exceeded 5000 chars</small>
+  {% endif %}
+{% if viewTD.completion == False %}
+
+<form class="Forms" action="{% url 'todos:viewtodo' viewTD.id %}" id="todos_title_link" method="post">
+  {% csrf_token %}
+
+        <div class="input-group mb-3">
+         <div class="input-group-prepend">
+           <span class="input-group-text" id="basic-addon1">Title:</span>
+         </div>
+         <input name="title" value="{{ viewTD.title }}" maxlength="100" required="" id="id_title" type="text" class="form-control titin" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+
+
+
+
+        <textarea class="textar" name="memo" cols="40" rows="10" maxlength="5000" id="id_memo">{{ viewTD.memo }}</textarea><br>
+
+        <label class="labcontainer">Important
+          <input type="checkbox" name="Important" id="id_Important" {% if viewTD.Important %}checked{% endif %}>
+          <span class="checkmark"></span>
+        </label>
+
+
+
+
+
+
+
+    <button id="sav" class="btn btn-primary buttons" type="submit" name="save">save</button>
+  </form>
+
+
+    <form  id="todos_title_link" action="{% url 'todos:complete' viewTD.id %}" method = "post">
+      {% csrf_token %}
+      <button class="btn btn-info buttons" type="submit" name="save">complete</button>
+    </form>
+  {% endif %}
+
+
+  <form  id="todos_title_link" action="{% url 'todos:deltodo' viewTD.id %}" method = "post">
+    {% csrf_token %}
+    <button class="btn btn-danger buttons" type="submit" name="delete">delete</button>
+  </form>
+
+</div>
+
+{% endblock %}

@@ -31,6 +31,7 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('interactive_dictionary/',include('interactive_dictionary.urls')),
     path('todos/',include('todos.urls')),
+    path('bookAnalyzer/',include('bookAnalyzer.urls')),
 
 ]
 

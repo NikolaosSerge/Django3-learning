@@ -1,0 +1,14 @@
+{% extends 'bookAnalyzer/base.html' %}
+ {% block content %}
+{% load static %}
+
+<div class="">
+  {{ book.title }}
+  <br>
+  <article class="analysis">
+    {{ analysis }}
+  </article>
+</div>
+
+
+ {% endblock %}
