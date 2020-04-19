@@ -72,11 +72,11 @@ def viewBooks(request, books_pk):
                 return JsonResponse({'definition':key,"context":contexts})
             elif keyword.upper in data.keys():
                 key=data[keyword]
-                key=[""+str(x+1)+". "+key[x]+"<br>" for x in range(0,len(key))]
+                key=[""+str(x+1)+". "+key[x]+" <br>" for x in range(0,len(key))]
                 return JsonResponse({'definition':key,"context":contexts})
             elif keyword.lower in data.keys():
                 key=data[keyword]
-                key=[""+str(x+1)+". "+key[x]+"<br>" for x in range(0,len(key))]
+                key=[""+str(x+1)+". "+key[x]+" <br>" for x in range(0,len(key))]
                 return JsonResponse({'definition':key,"context":contexts})
             else:
                 key=difflib.get_close_matches(keyword,data.keys(),n=3,cutoff=0.7)

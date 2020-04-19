@@ -7,7 +7,7 @@ var arr=eval($("#words")[0].innerText)
 
 
 
-var y=1200
+var y=800
 var pages = ((arr.length / y) >> 0)+1
 $(".pages")[1].innerText=" of "+pages
 $(".pages")[0].innerText = " "
@@ -147,7 +147,7 @@ $(".inp").on('keypress',function(e) {
             </table>
             `
           $(".output")[0].innerHTML=text;
-          $(".console")[0].innerText = response["definition"]
+          $(".console")[0].innerHTML = response["definition"]
 
           if (response.hasOwnProperty("matches")) {
 
@@ -176,6 +176,8 @@ $(".inp").on('keypress',function(e) {
 });
 $('.inpFT').on('keypress',function(e) {
   length=$("[name='length']").innerText
+  console.log(length)
+
     if(e.which == 13) {
       if (length!=="") {
         var data = {
